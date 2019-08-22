@@ -2,7 +2,7 @@
 This script is created by modifying seaborn matrix.py
 in https://github.com/mwaskom/seaborn, by Michael L. Waskom
 
-Further modified by http://threeprogramming.lolipop.jp/blog/
+Further modified by http://threeprogramming.lolipop.jp/blog/ at https://www.kaggle.com/threecourse/heatmap-with-change-cell-size-feature
 
 Further modified by Paul Schwenn - Sunshine Coast Mind and Neuroscience Thompson Institude.
 
