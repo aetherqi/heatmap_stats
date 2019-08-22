@@ -1,6 +1,11 @@
 """
 This script is created by modifying seaborn matrix.py
 in https://github.com/mwaskom/seaborn, by Michael L. Waskom
+
+Further modified by http://threeprogramming.lolipop.jp/blog/
+
+Further modified by Paul Schwenn - Sunshine Coast Mind and Neuroscience Thompson Institude.
+
 """
 
 from __future__ import division
@@ -177,7 +182,6 @@ class _HeatMapperStats(object):
         self.ax_kws = {} if ax_kws is None else ax_kws
         self.rect_kws = {} if rect_kws is None else rect_kws
         self.fdr = fdr
-        # self.rect_kws.setdefault('edgecolor', "black")
 
     def _determine_cmap_params(self, plot_data, vmin, vmax,
                                cmap, center, robust):
