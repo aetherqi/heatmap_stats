@@ -1,11 +1,6 @@
 """
 This script is created by modifying seaborn matrix.py
 in https://github.com/mwaskom/seaborn, by Michael L. Waskom
-
-Further modified by http://threeprogramming.lolipop.jp/blog/ at https://www.kaggle.com/threecourse/heatmap-with-change-cell-size-feature
-
-Further modified by Paul Schwenn - Sunshine Coast Mind and Neuroscience Thompson Institude.
-
 """
 
 from __future__ import division
@@ -182,6 +177,7 @@ class _HeatMapperStats(object):
         self.ax_kws = {} if ax_kws is None else ax_kws
         self.rect_kws = {} if rect_kws is None else rect_kws
         self.fdr = fdr
+        # self.rect_kws.setdefault('edgecolor', "black")
 
     def _determine_cmap_params(self, plot_data, vmin, vmax,
                                cmap, center, robust):
@@ -224,7 +220,7 @@ class _HeatMapperStats(object):
                 cellsize = cellsize.values
             self.cellsize = cellsize
             if cellsize_vmax is None:
-                cellsize_vmax = cellsize.max()
+                cellsize_vmax = np.nanmax(cellsize)
             self.cellsize_vmax = cellsize_vmax
 
     def _skip_ticks(self, labels, tickevery):
@@ -284,7 +280,7 @@ class _HeatMapperStats(object):
                 vv = (val - self.vmin) / (self.vmax - self.vmin)
                 size = np.clip(s / self.cellsize_vmax, 0.1, 1.0)
                 color = self.cmap(vv)
-                rect = plt.Rectangle([x - size / 2, y - size / 2], size, size, facecolor=color, **self.rect_kws)
+                rect = plt.Rectangle((x - size / 2, y - size / 2), size, size, facecolor=color, **self.rect_kws)
                 ax.add_patch(rect)
 
                 if self.annot:
@@ -300,7 +296,7 @@ class _HeatMapperStats(object):
 
         # Set the axis limits
         ax.set(xlim=(0, self.data.shape[1]), ylim=(0, self.data.shape[0]))
-
+        # set the limit of the axes to -3,3 both on x and y
         # Set other attributes
         ax.set(**self.ax_kws)
 
@@ -340,6 +336,7 @@ class _HeatMapperStats(object):
 
         # Invert the y axis to show the plot in matrix form
         ax.invert_yaxis()
+        # ax.autoscale()
 
 
 def heatmap_stats(data, vmin=None, vmax=None, cmap=None, center=None, robust=False,
